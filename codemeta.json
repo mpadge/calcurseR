@@ -7,7 +7,7 @@
   "codeRepository": "https://github.com/mpadge/calcurseR",
   "issueTracker": "https://github.com/mpadge/calcurseR/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.0.014",
+  "version": "0.0.0.15",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -45,6 +45,18 @@
     },
     "2": {
       "@type": "SoftwareApplication",
+      "identifier": "digest",
+      "name": "digest",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=digest"
+    },
+    "3": {
+      "@type": "SoftwareApplication",
       "identifier": "lubridate",
       "name": "lubridate",
       "provider": {
@@ -55,9 +67,9 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=lubridate"
     },
-    "SystemRequirements": {}
+    "SystemRequirements": null
   },
-  "fileSize": "7.982KB",
+  "fileSize": "13.526KB",
   "readme": "https://github.com/mpadge/calcurseR/blob/main/README.md",
   "contIntegration": "https://github.com/mpadge/calcurseR/actions?query=workflow%3AR-CMD-check",
   "developmentStatus": "https://www.repostatus.org/#concept"
