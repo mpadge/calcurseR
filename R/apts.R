@@ -47,11 +47,12 @@ read_apts <- function (regular = FALSE) {
     if (file.exists (f_cache)) {
         apts_cache <- brio::read_lines (f_cache)
     }
+
+    brio::write_lines (apts, f_cache)
+
     if (any (apts %in% apts_cache)) {
         apts <- apts [-which (apts %in% apts_cache)]
     }
-
-    brio::write_lines (apts, f_cache)
 
     return (apts)
 }
