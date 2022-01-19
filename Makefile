@@ -1,8 +1,8 @@
-.PHONY: all check document test
+.PHONY: all check doc test
 
-all: document check
+all: doc rcmd
 
-document:
+doc:
 	Rscript -e 'devtools::document()'
 	Rscript -e 'rmarkdown::render("README.Rmd")'
 
@@ -12,3 +12,6 @@ test:
 check:
 	Rscript -e 'summary(pkgcheck::pkgcheck())'
 	#Rscript -e 'library(pkgcheck); checks <- pkgcheck(); print(checks); summary (checks)'
+
+rcmd:
+	Rscript -e 'rcmdcheck::rcmdcheck()'
