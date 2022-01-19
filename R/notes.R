@@ -16,19 +16,20 @@ cc_update_notes <- function (quiet = FALSE) {
     daily <- brio::read_lines (f_daily)
     notes <- read_notes ()
     notes <- cache_notes (notes)
-    if (is.null (notes)) {
-        invisible (FALSE)
-    }
-
-    d_old <- daily
-    daily <- add_notes_to_daily (notes, daily)
-    ret <- !identical (d_old, daily)
 
     msg <- "No updates to 'daily.md'"
+    ret <- !is.null (notes)
 
     if (ret) {
-        brio::write_lines (daily, f_daily)
-        msg <- paste0 ("daily.md at [", cc_dir (), "] file updated")
+
+        d_old <- daily
+        daily <- add_notes_to_daily (notes, daily)
+        ret <- !identical (d_old, daily)
+
+        if (ret) {
+            brio::write_lines (daily, f_daily)
+            msg <- paste0 ("daily.md at [", cc_dir (), "] file updated")
+        }
     }
 
     if (!quiet) {
