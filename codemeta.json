@@ -7,7 +7,7 @@
   "codeRepository": "https://github.com/mpadge/calcurseR",
   "issueTracker": "https://github.com/mpadge/calcurseR/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.0.17",
+  "version": "0.0.0.018",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -67,7 +67,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=lubridate"
     },
-    "SystemRequirements": null
+    "SystemRequirements": {}
   },
   "fileSize": "14.43KB",
   "readme": "https://github.com/mpadge/calcurseR/blob/main/README.md",
