@@ -1,7 +1,7 @@
 <!-- badges: start -->
 
 [![R build
-status](https://github.com/ropensci-review-tools/calcurseR/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci-review-tools/calcurseR/actions?query=workflow%3AR-CMD-check)
+status](https://github.com/mpadge/calcurseR/workflows/R-CMD-check/badge.svg)](https://github.com/mpadge/calcurseR/actions?query=workflow%3AR-CMD-check)
 [![Project Status:
 Concept](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
 <!-- badges: end -->
