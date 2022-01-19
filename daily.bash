@@ -11,8 +11,11 @@ elif [ "$1" == "help" ]; then
     echo -e "${SYM} ${ARG}no arguments${NC}    : ${TXT}update daily task list from calendar.${NC}"
     echo -e "${SYM} ${ARG}help${NC}            : ${TXT}display these help messages.${NC}"
     echo -e "${SYM} ${ARG}notes${NC}           : ${TXT}update daily task list from todo notes.${NC}"
+    echo -e "${SYM} ${ARG}edit${NC}            : ${TXT}open daily task list with vim.${NC}"
 elif [ "$1" == "notes" ]; then
     Rscript -e "calcurseR::cc_update_notes()"
+elif [ "$1" == "open" ]; then
+    Rscript -e "calcurseR::cc_edit_daily()"
 else
     echo -e "daily on accepts 'notes'; see 'daily --help' for help"
 fi
