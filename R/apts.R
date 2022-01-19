@@ -123,7 +123,7 @@ add_new_apts <- function (apts, daily) {
         j <- which (daily == i$date [1])
         daily <- c (daily [seq (j)],
                     "",
-                    paste0 ("- ", i$content),
+                    paste0 ("- [ ] ", i$content),
                     daily [-seq (j)])
     }
 
