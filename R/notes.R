@@ -1,7 +1,8 @@
 
 #' Update 'daily.md' file from new 'calcurse' TODO notes
 #'
-#' @param quiet If 'TRUE', display information about file locations and statuses.
+#' @param quiet If 'TRUE', display information about file locations and
+#' statuses.
 #' @return (Invisibly) TRUE if 'daily.md' in the path specified by
 #' 'CALCURSE_DIR' is updated, otherwise FALSE.
 #' @export
@@ -16,8 +17,25 @@ cc_update_notes <- function (quiet = FALSE) {
     notes <- read_notes ()
     notes <- cache_notes (notes)
     if (is.null (notes)) {
-        return (NULL)
+        invisible (FALSE)
     }
+
+    d_old <- daily
+    daily <- add_notes_to_daily (notes, daily)
+    ret <- !identical (d_old, daily)
+
+    msg <- "No updates to 'daily.md'"
+
+    if (ret) {
+        brio::write_lines (daily, f_daily)
+        msg <- paste0 ("daily.md at [", cc_dir (), "] file updated")
+    }
+
+    if (!quiet) {
+        message (msg)
+    }
+
+    invisible (ret)
 }
 
 read_notes <- function () {
@@ -45,14 +63,18 @@ read_notes <- function () {
     notes <- lapply (notes [index], function (n) {
                 index <- grep ("[0-9]*\\/[0-9]*\\/[0-9]*\\s", n)
                 n_i <- n [index]
-                dates <- regmatches (n_i, regexpr ("[0-9]*\\/[0-9]*\\/[0-9]*", n_i))
+                dates <- regmatches (n_i,
+                            regexpr ("[0-9]*\\/[0-9]*\\/[0-9]*", n_i))
                 dates <- as.Date (strptime (dates, "%d/%m/%Y"))
-                wdays <- as.character (lubridate::wday (dates, label = TRUE, abbr = TRUE))
-                d <- paste0 ("**", wdays, " ", dates, "**")
+                wdays <- as.character (
+                    lubridate::wday (dates, label = TRUE, abbr = TRUE)
+                    )
+                d_fmt <- strftime (dates, "%d/%m/%Y")
+                d_fmt <- paste0 ("**", wdays, " ", d_fmt, "**")
 
                 n_i <- gsub ("^\\-\\s\\[.\\]\\s[0-9]*\\/[0-9]*\\/[0-9]*\\s",
                              "", n_i)
-                data.frame (date = dates, d_fmt = d, content = n_i)
+                data.frame (date = dates, d_fmt = d_fmt, content = n_i)
                          })
 
     for (n in seq_along (notes)) {
@@ -79,4 +101,36 @@ cache_notes <- function (notes) {
     }
 
     return (notes)
+}
+
+add_notes_to_daily <- function (notes, daily) {
+
+    notes <- do.call (rbind, notes)
+    notes <- notes [order (notes$date, decreasing = TRUE), ]
+
+    # add new dates to daily
+    index <- which (!notes$d_fmt %in% daily)
+    if (length (index) > 0L) {
+        daily <- add_new_dates (notes$date [index], daily)
+    }
+
+    notes <- split (notes, f = as.factor (notes$date))
+
+    index_dates <- grep ("^\\*\\*", daily)
+    for (n in notes) {
+        index <- match (n$d_fmt, daily)
+        index_next <- index_dates [which (index_dates > index)] [1]
+        daily_head <- daily [seq (index + 1)]
+        daily_day <- daily [seq (index + 1, index_next - 1,
+                                 length.out = index_next - index - 2)]
+        daily_tail <- daily [index_next:length (daily)]
+
+        n_i <- paste0 ("- [ ] ", n$title, ": ", n$content)
+        n_i <- n_i [which (!n_i %in% daily_day)]
+        daily_day <- c (daily_day, n_i, "")
+
+        daily <- c (daily_head, daily_day, daily_tail)
+    }
+
+    return (daily)
 }

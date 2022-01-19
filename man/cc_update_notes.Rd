@@ -7,7 +7,8 @@
 cc_update_notes(quiet = FALSE)
 }
 \arguments{
-\item{quiet}{If 'TRUE', display information about file locations and statuses.}
+\item{quiet}{If 'TRUE', display information about file locations and
+statuses.}
 }
 \value{
 (Invisibly) TRUE if 'daily.md' in the path specified by
