@@ -10,3 +10,11 @@ calcurse_dir <- function () {
 daily_dir <- function () {
     Sys.getenv ("DAILY_DIR")
 }
+
+cc_dir <- function () {
+    cc_dir <- daily_dir ()
+    if (nzchar (cc_dir)) {
+        cc_dir <- calcurse_dir ()
+    }
+    return (cc_dir)
+}

@@ -7,12 +7,7 @@
 #' @export
 cc_update_daily <- function (quiet = FALSE) {
 
-    cc_dir <- daily_dir ()
-    if (nzchar (cc_dir)) {
-        cc_dir <- calcurse_dir ()
-    }
-
-    f_daily <- file.path (cc_dir, "daily.md")
+    f_daily <- file.path (cc_dir (), "daily.md")
     daily <- NULL
     if (file.exists (f_daily)) {
         daily <- brio::read_lines (f_daily)
@@ -31,7 +26,7 @@ cc_update_daily <- function (quiet = FALSE) {
 
         brio::write_lines (daily, f_daily)
 
-        msg <- paste0 ("daily.md at [", cc_dir, "] file updated")
+        msg <- paste0 ("daily.md at [", cc_dir (), "] file updated")
     }
 
     if (!quiet) {
