@@ -18,8 +18,6 @@ cc_update_notes <- function (quiet = FALSE) {
     if (is.null (notes)) {
         return (NULL)
     }
-
-    add_notes_to_daily (daily, notes)
 }
 
 read_notes <- function () {
@@ -44,7 +42,7 @@ read_notes <- function () {
     index <- which (vapply (notes, function (n)
                             any (grepl ("^\\-\\s\\[(x|\\s)\\]", n)),
                             logical (1)))
-    lapply (notes [index], function (n) {
+    notes <- lapply (notes [index], function (n) {
                 index <- grep ("[0-9]*\\/[0-9]*\\/[0-9]*\\s", n)
                 n_i <- n [index]
                 dates <- regmatches (n_i, regexpr ("[0-9]*\\/[0-9]*\\/[0-9]*", n_i))
@@ -56,6 +54,12 @@ read_notes <- function () {
                              "", n_i)
                 data.frame (date = dates, d_fmt = d, content = n_i)
                          })
+
+    for (n in seq_along (notes)) {
+        notes [[n]]$title <- names (notes) [n]
+    }
+
+    return (notes)
 }
 
 cache_notes <- function (notes) {
