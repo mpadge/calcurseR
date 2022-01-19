@@ -8,6 +8,14 @@
 \description{
 What the package does (one paragraph).
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/mpadge/calcurseR}
+  \item Report bugs at \url{https://github.com/mpadge/calcurseR/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Mark Padgham \email{mark.padgham@email.com}
 
