@@ -14,6 +14,12 @@ cc_update_notes <- function (quiet = FALSE) {
 
     daily <- brio::read_lines (f_daily)
     notes <- read_notes ()
+    notes <- cache_notes (notes)
+    if (is.null (notes)) {
+        return (NULL)
+    }
+
+    add_notes_to_daily (daily, notes)
 }
 
 read_notes <- function () {
@@ -50,4 +56,23 @@ read_notes <- function () {
                              "", n_i)
                 data.frame (date = dates, d_fmt = d, content = n_i)
                          })
+}
+
+cache_notes <- function (notes) {
+
+    cc_dir <- calcurse_dir ()
+    f <- file.path (cc_dir, "notes-hash")
+    hash_old <- NULL
+    if (file.exists (f)) {
+        hash_old <- brio::read_lines (f)
+    }
+    hash_new <- digest::digest (notes)
+
+    if (identical (hash_new, hash_old)) {
+        notes <- NULL
+    } else {
+        brio::write_lines (hash_new, f)
+    }
+
+    return (notes)
 }
