@@ -4,8 +4,10 @@
   "identifier": "calcurseR",
   "description": "What the package does (one paragraph).",
   "name": "calcurseR: Functions to use 'calcurse' as a general organising tool",
+  "codeRepository": "https://github.com/mpadge/calcurseR",
+  "issueTracker": "https://github.com/mpadge/calcurseR/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.0.004",
+  "version": "0.0.0.5",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -53,10 +55,9 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=lubridate"
     },
-    "SystemRequirements": {}
+    "SystemRequirements": null
   },
-  "fileSize": "7.862KB",
-  "codeRepository": "https://github.com/mpadge/calcurseR",
+  "fileSize": "7.982KB",
   "readme": "https://github.com/mpadge/calcurseR/blob/main/README.md",
   "contIntegration": "https://github.com/mpadge/calcurseR/actions?query=workflow%3AR-CMD-check",
   "developmentStatus": "https://www.repostatus.org/#concept"

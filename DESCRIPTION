@@ -1,10 +1,12 @@
 Package: calcurseR
 Title: Functions to use 'calcurse' as a general organising tool
-Version: 0.0.0.004
+Version: 0.0.0.005
 Authors@R: 
     person("Mark", "Padgham", , "mark.padgham@email.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
 License: GPL-3
+URL: https://github.com/mpadge/calcurseR
+BugReports: https://github.com/mpadge/calcurseR/issues
 Imports:
     brio,
     lubridate
