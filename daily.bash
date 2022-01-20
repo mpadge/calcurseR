@@ -20,7 +20,8 @@ elif [ "$1" == "help" ]; then
 elif [ "$1" == "notes" ]; then
     Rscript -e "calcurseR::cc_update_notes()"
 elif [ "$1" == "open" ] || [ "$1" == "edit" ]; then
-    Rscript -e "calcurseR::cc_edit_daily()"
+    cd $DAILY_DIR
+    vim "daily.md"
 elif [ "$1" == "st" ]; then
     git -C $DAILY_DIR st
 elif [ "$1" == "diff" ]; then
