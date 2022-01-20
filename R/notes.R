@@ -119,12 +119,16 @@ add_notes_to_daily <- function (notes, daily) {
 
     index_dates <- grep ("^\\*\\*", daily)
     for (n in notes) {
-        index <- match (n$d_fmt, daily)
+        index <- match (n$d_fmt, daily) + 1
         index_next <- index_dates [which (index_dates > index)] [1]
-        daily_head <- daily [seq (index + 1)]
-        daily_day <- daily [seq (index + 1, index_next - 1,
-                                 length.out = index_next - index - 2)]
-        daily_tail <- daily [index_next:length (daily)]
+
+        index_head <- seq (index)
+        index_tail <- index_next:length (daily)
+        index_day <- seq (length (daily)) [-c (index_head, index_tail)]
+
+        daily_head <- daily [index_head]
+        daily_day <- daily [index_day]
+        daily_tail <- daily [index_tail]
 
         n_i <- paste0 ("- [ ] ", n$title, ": ", n$content)
         n_i <- n_i [which (!n_i %in% daily_day)]
