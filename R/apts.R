@@ -119,7 +119,7 @@ add_new_apts <- function (apts, daily) {
     x <- split (data.frame (date = d, content = content),
                 f = as.factor (d))
     for (i in x) {
-        j <- which (daily == i$date [1])
+        j <- which (daily == i$date [1]) [1]
         daily <- c (daily [seq (j)],
                     "",
                     paste0 ("- [ ] ", i$content),
