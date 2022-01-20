@@ -83,7 +83,12 @@ add_new_dates <- function (d, daily) {
     dnew <- rep (dnew, each = 2)
     dnew [seq (n) * 2] <- ""
 
-    index <- 1:grep ("^\\#\\#\\#", daily) [1] - 1
+    # If no week header for 1st date, then use date formats; else use weekly
+    # header formats:
+    ptn <- ifelse (grep ("^\\*\\*[A-Z]", daily) [1] >
+                   grep ("^\\#\\#\\#", daily) [1],
+                   "^\\#\\#\\#", "^\\*\\*[A-Z]")
+    index <- 1:(grep (ptn, daily) [1] - 1)
     daily <- c (daily [index],
                 dnew,
                 daily [-index])
