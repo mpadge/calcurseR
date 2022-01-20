@@ -72,8 +72,7 @@ add_new_dates <- function (d, daily) {
         return (daily)
     }
 
-    today <- as.Date (strftime (Sys.time (), "%Y-%m-%d"))
-    dnew <- rev (seq (today, max (dnew), by = "days") [-1])
+    dnew <- rev (seq (max (daily_dates), max (dnew), by = "days") [-1])
     dnew_abbr <- as.character (lubridate::wday (dnew, label = TRUE, abbr = TRUE))
     dnew <- strftime (dnew, "%d/%m/%Y")
     index <- which (!dnew_abbr %in% c ("Sat", "Sun"))
