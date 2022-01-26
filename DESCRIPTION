@@ -1,6 +1,6 @@
 Package: calcurseR
 Title: Functions to use 'calcurse' as a general organising tool
-Version: 0.0.0.024
+Version: 0.0.0.025
 Authors@R: 
     person("Mark", "Padgham", , "mark.padgham@email.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).

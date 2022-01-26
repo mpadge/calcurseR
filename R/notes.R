@@ -119,7 +119,7 @@ add_notes_to_daily <- function (notes, daily) {
 
     index_dates <- grep ("^\\*\\*", daily)
     for (n in notes) {
-        index <- match (n$d_fmt, daily) + 1
+        index <- match (n$d_fmt [1], daily) + 1
         index_next <- index_dates [which (index_dates > index)] [1]
 
         index_head <- seq (index)
