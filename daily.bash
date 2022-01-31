@@ -27,5 +27,5 @@ elif [ "$1" == "st" ]; then
 elif [ "$1" == "diff" ]; then
     git -C $DAILY_DIR diff daily.md
 else
-    echo -e "daily on accepts 'notes'; see 'daily --help' for help"
+    echo -e "command not recognised; see 'daily --help' for help"
 fi
